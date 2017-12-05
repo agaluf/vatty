@@ -1,0 +1,30 @@
+{
+  "name": "tufy/vatty",
+  "type": "library",
+  "description": "Vatty, the EU Tax ID validator",
+  "keywords": ["vat", "tax", "eu"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Andrej Galuf",
+      "email": "andrej.galuf@usd.de",
+      "homepage": "https://andrejgaluf.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.5"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~5"
+  },
+  "autoload": {
+    "psr-4": {
+      "Vatty\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Vatty\\tests\\": "tests/"
+    }
+  }
+}
