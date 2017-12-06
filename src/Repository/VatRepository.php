@@ -26,8 +26,8 @@ class VatRepository implements VatRepositoryInterface {
    *   An array of vat definitions. If no definitions are passed, the default is
    *   loaded from the included json.
    */
-  public function __construct($definitions = NULL) {
-    $this->definitions = $definitions ? $definitions : json_decode(file_get_contents(__DIR__ . '/../../resources/vat.json'), TRUE);
+  public function __construct(array $definitions = NULL) {
+    $this->definitions = $definitions ? $definitions : $this->loadDefaultDefinitions();
   }
 
   /**
@@ -51,6 +51,26 @@ class VatRepository implements VatRepositoryInterface {
     }
 
     return $vats;
+  }
+
+  /**
+   * Helper method to load the default definitions.
+   *
+   * @return array
+   *   An array of loaded definitions.
+   *
+   * @throws \Exception
+   *   Throws an exception if json cannot be read.
+   */
+  protected function loadDefaultDefinitions() {
+    $definitions = json_decode(file_get_contents(__DIR__ . '/../../resources/vat.json'), TRUE);
+    if (!$definitions) {
+      // An error has occured when trying to parse the json, which usually
+      // means that the JSON is corrupt. Throw a general error here.
+      throw new \Exception('Invalid Json.');
+    }
+
+    return $definitions;
   }
 
 }
