@@ -3,3 +3,6 @@ vendor
 
 # Ignore PHPStorm project config
 .idea
+
+# Ignore code coverage folder
+code-coverage
