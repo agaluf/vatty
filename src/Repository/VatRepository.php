@@ -25,6 +25,9 @@ class VatRepository implements VatRepositoryInterface {
    * @param array $definitions
    *   An array of vat definitions. If no definitions are passed, the default is
    *   loaded from the included json.
+   *
+   * @throws \Exception
+   *   Throws an exception if json cannot be read.
    */
   public function __construct(array $definitions = NULL) {
     $this->definitions = $definitions ? $definitions : $this->loadDefaultDefinitions();
@@ -35,7 +38,7 @@ class VatRepository implements VatRepositoryInterface {
    */
   public function get($countryCode) {
     if (!isset($this->definitions[$countryCode])) {
-      throw new UnknownCountryException($countryCode);
+      throw new UnknownCountryException();
     }
 
     return new Vat($countryCode, $this->definitions[$countryCode]);

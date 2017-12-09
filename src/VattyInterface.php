@@ -82,7 +82,7 @@ interface VattyInterface {
    * @param string $countryCode
    *   Country code in ISO 3166-1 alpha-2 format.
    * @param $vatNumber
-   *   The requester's Vat number.
+   *   The Vat number to validate.
    *
    * @return ValidationResultInterface
    *   The validation result.
