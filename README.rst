@@ -22,29 +22,23 @@ Add ``tufy/vatty`` as a require dependency in your ``composer.json`` file:
 Usage
 -----
 
-Simple validation
+Simple validation:
 
 Simple validation checks if the passed-in validation number matches the expected format. It only validates if the
 syntax for the given country is correct.
 
 .. code-block:: php
 
-use Vatty\Vatty;
+    use Vatty\Vatty;
 
-$validator = new Vatty();
-$result = $validator->validate('DE', 'DE123456789');
+    $validator = new Vatty();
+    $result = $validator->validate('DE', 'DE123456789');
 
 
-Simple Vies validation
+Simple Vies validation:
 
-@todo: implement
+@todo: Not yet implemented
 
-Qualified Vies validation
+Qualified Vies validation:
 
-@todo: implement
-
-Warning: both Vies validations require SoapClient to initiate a request against Vies validation service.
-If you do not have SoapClient active, the validation will not be performed.
-
-@todo: does it make sense to bypass SoapClient and implement the request as a Rest call, with simulated SOAP?
-
+@todo: Not yet implemented

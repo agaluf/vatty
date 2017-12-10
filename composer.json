@@ -1,5 +1,5 @@
 {
-  "name": "tufy/vatty",
+  "name": "agaluf/vatty",
   "type": "library",
   "description": "Vatty, the EU Tax ID validator",
   "keywords": ["vat", "tax", "eu"],
@@ -7,7 +7,7 @@
   "authors": [
     {
       "name": "Andrej Galuf",
-      "email": "andrej.galuf@usd.de",
+      "email": "info@andrejgaluf.com",
       "homepage": "https://andrejgaluf.com"
     }
   ],
