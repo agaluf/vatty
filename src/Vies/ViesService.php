@@ -39,7 +39,7 @@ class ViesService implements VatValidationServiceInterface {
   protected $factory;
 
   public function __construct($wsdl = NULL, $factory = NULL) {
-    $this->wsdl = $wsdl ? $wsdl : 'http://ec.europa.eu/taxation_customs/vies/checkVatTestService.wsdl';
+    $this->wsdl = $wsdl ? $wsdl : 'http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl';
     $this->factory = $factory ? $factory : new SoapFactory();
   }
 
