@@ -3,7 +3,7 @@ Vatty
 
 PHP 5.6+ EU VAT validation library
 
-Vatty provides a simple API to validate EU Tax IDs both with simple local syntax check and by using the (VAT Information Exchange System) VAT validation service.
+Vatty provides a simple API to validate EU Tax IDs both with simple local syntax check and by using the Vies (VAT Information Exchange System) VAT validation service.
 
 Requirements
 ============
@@ -13,11 +13,11 @@ Vatty requires PHP 5.6+ and Composer. Vies validation service additionally requi
 Installation
 ============
 
-Add ``tufy/vatty`` as a require dependency in your ``composer.json`` file:
+Add ``agaluf/vatty`` as a require dependency in your ``composer.json`` file:
 
 .. code-block:: bash
 
-    composer require tufy/vatty
+    composer require agaluf/vatty
 
 Usage
 =====
