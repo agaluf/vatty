@@ -11,6 +11,13 @@ use Vatty\Exception\UnknownCountryException;
 class VatRepository implements VatRepositoryInterface {
 
   /**
+   * The path to the default json file.
+   *
+   * @var string
+   */
+  protected $jsonPath = __DIR__ . '/../../resources/vat.json';
+
+  /**
    * Vat definitions.
    *
    * @array
@@ -66,7 +73,7 @@ class VatRepository implements VatRepositoryInterface {
    *   Throws an exception if json cannot be read.
    */
   protected function loadDefaultDefinitions() {
-    $definitions = json_decode(file_get_contents(__DIR__ . '/../../resources/vat.json'), TRUE);
+    $definitions = json_decode(file_get_contents($this->jsonPath), TRUE);
     if (!$definitions) {
       // An error has occured when trying to parse the json, which usually
       // means that the JSON is corrupt. Throw a general error here.

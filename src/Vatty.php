@@ -31,6 +31,13 @@ class Vatty implements VattyInterface {
   protected $cache;
 
   /**
+   * Whether the built-in file cache should be used.
+   *
+   * @var bool
+   */
+  protected $useCache = TRUE;
+
+  /**
    * Whether to use the validation service.
    *
    * @var bool
@@ -63,8 +70,8 @@ class Vatty implements VattyInterface {
     VatRepositoryInterface $vatRepository = NULL,
     VatValidationServiceInterface $validationService = NULL
   ) {
-    $this->repository = $vatRepository ? $vatRepository : new VatRepository();
-    $this->validationService = $validationService ? $vatRepository : new ViesService();
+    $this->repository = !is_null($vatRepository) ? $vatRepository : new VatRepository();
+    $this->validationService = !is_null($validationService) ? $validationService : new ViesService();
   }
 
   /**
@@ -73,6 +80,7 @@ class Vatty implements VattyInterface {
   public function setRequester(/* string */ $countryCode, /* string */ $vatNumber) {
     $this->requesterCountry = $countryCode;
     $this->requesterVat = $vatNumber;
+    return $this;
   }
 
   public function requesterEmpty() {
@@ -84,13 +92,15 @@ class Vatty implements VattyInterface {
    */
   public function useVies(/* bool */ $useVies = TRUE) {
     $this->vies = $useVies;
+    return $this;
   }
 
   /**
    * {@inheritdoc}
    */
   public function disableCache() {
-    // TODO: Implement disableCache() method.
+    $this->useCache = FALSE;
+    return $this;
   }
 
   /**
