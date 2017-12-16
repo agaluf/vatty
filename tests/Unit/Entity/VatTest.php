@@ -49,7 +49,8 @@ class VatTest extends TestCase {
     return [
       ['DE', ['DE\d{9}'], 'DE123456789', TRUE],
       ['DE', ['DE\d{9}'], 'DE12345', FALSE],
-      ['DE', ['DE\d{9}'], 'DE1234567890', FALSE]
+      ['DE', ['DE\d{9}'], 'DE1234567890', FALSE],
+      ['DE', ['DE\d{9}'], 'DE100', FALSE],
     ];
   }
 

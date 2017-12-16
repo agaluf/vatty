@@ -13,6 +13,12 @@ use Vatty\Vatty;
  */
 class VattyTest extends TestCase {
 
+  public function getViesServiceMock() {
+    return $this->getMockBuilder('\Vatty\Vies\ViesService')
+      ->disableOriginalConstructor()
+      ->getMock();
+  }
+
   /**
    * Assert that Vatty is correct constructed.
    *
@@ -81,6 +87,101 @@ class VattyTest extends TestCase {
   }
 
   /**
+   * Assert that setting a requester is correctly performed.
+   *
+   * @covers ::setRequester
+   */
+  public function testSetRequester() {
+    $vatty = new Vatty();
+
+    $vatty->setRequester('Foo', 'Bar');
+
+    $country = $this->readAttribute($vatty, 'requesterCountry');
+    $vat = $this->readAttribute($vatty, 'requesterVat');
+
+    $this->assertSame('Foo', $country);
+    $this->assertSame('Bar', $vat);
+  }
+
+  /**
+   * Assert that requester is correctly detected as empty.
+   *
+   * @covers ::requesterEmpty
+   * @dataProvider provideRequesterData
+   */
+  public function testRequesterEmpty($country, $vat, $expectedResult) {
+    $vatty = new Vatty();
+    $vatty->setRequester($country, $vat);
+
+    $this->assertSame($expectedResult, $vatty->requesterEmpty());
+  }
+
+  /**
+   * Assert that Vies is correctly set.
+   *
+   * @covers ::useVies
+   */
+  public function testUseVies() {
+    $vatty = new Vatty();
+    $vatty->useVies();
+
+    $result = $this->readAttribute($vatty, 'vies');
+
+    $this->assertTrue($result);
+  }
+
+  /**
+   * Assert that cache is correctly disabled.
+   *
+   * @covers ::disableCache
+   */
+  public function testDisableCache() {
+    $vatty = new Vatty();
+    $vatty->disableCache();
+
+    $cache = $this->readAttribute($vatty, 'useCache');
+
+    $this->assertFalse($cache);
+  }
+
+  /**
+   * Test Vies simple validation.
+   *
+   * @covers ::validate
+   * @covers ::performViesValidation
+   */
+  public function testViesSimpleValidation() {
+    $service = $this->getViesServiceMock();
+
+    $service->method('simpleValidation')->willReturn('simpleValidation');
+    $service->method('qualifiedValidation')->willReturn('qualifiedValidation');
+
+    $vatty = new Vatty(NULL, $service);
+    $vatty->useVies();
+
+    $this->assertSame('simpleValidation', $vatty->validate('DE', 'DE123456789'));
+  }
+
+  /**
+   * Test vies qualified validation.
+   *
+   * @covers ::validate
+   * @covers ::performViesValidation
+   */
+  public function testViesQualifiedValidation() {
+    $service = $this->getViesServiceMock();
+
+    $service->method('simpleValidation')->willReturn('simpleValidation');
+    $service->method('qualifiedValidation')->willReturn('qualifiedValidation');
+
+    $vatty = new Vatty(NULL, $service);
+    $vatty->useVies();
+    $vatty->setRequester('DE', 'DE123456789');
+
+    $this->assertSame('qualifiedValidation', $vatty->validate('DE', 'DE123456789'));
+  }
+
+  /**
    * Provides data to test validation.
    *
    * @return array
@@ -94,5 +195,20 @@ class VattyTest extends TestCase {
       ['FO', 'Invalid', FALSE],
     ];
   }
+
+  /**
+   * Provides data to test requester info.
+   *
+   * @return array
+   */
+  public function provideRequesterData() {
+    return [
+      ['DE', 'DE123456789', FALSE],
+      [NULL, NULL, TRUE],
+      ['DE', NULL, TRUE],
+      [NULL, 'DE123456789', TRUE],
+    ];
+  }
+
 
 }
