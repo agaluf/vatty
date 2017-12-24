@@ -12,7 +12,8 @@
     }
   ],
   "require": {
-    "php": ">=5.5"
+    "php": ">=5.5",
+    "meng-tian/async-soap-guzzle": "^0.2.4"
   },
   "require-dev": {
     "phpunit/phpunit": "~5"
