@@ -5,6 +5,9 @@ PHP 5.6+ EU VAT validation library
 
 Vatty provides a simple API to validate EU Tax IDs both with simple local syntax check and by using the Vies (VAT Information Exchange System) VAT validation service.
 
+.. image:: https://travis-ci.org/agaluf/vatty.svg?branch=development
+    :target: https://travis-ci.org/agaluf/vatty
+
 Requirements
 ============
 
