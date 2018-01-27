@@ -190,6 +190,7 @@ class VattyTest extends TestCase {
     return [
       ['DE', 'DE123456789', TRUE],
       ['DE', 'FR123456789', FALSE],
+      ['DE', 'DE 123456789', TRUE],
       ['DE', 'DE12345678', FALSE],
       ['DE', 'DE1234567890', FALSE],
       ['FO', 'Invalid', FALSE],

@@ -110,6 +110,11 @@ class Vatty implements VattyInterface {
     try {
       $vat = $this->repository->get($countryCode);
 
+      // Vies service expects the Vat number to be passed without any spaces,
+      // even though official Vat numbers may contain them (see France, GB).
+      // To simplify and unify the validations, we remove the spaces here.
+      $vatNumber = str_replace(' ', '', $vatNumber);
+
       $syntaxValid = $vat->validate($vatNumber);
 
       if ($syntaxValid && $this->vies === TRUE) {
