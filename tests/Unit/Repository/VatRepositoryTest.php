@@ -94,6 +94,7 @@ class VatRepositoryTest extends TestCase {
     return [
       ['AT', 'ATU99999999'],
       ['BE', 'BE0999999999'],
+      ['BE', 'BE1999999999'],
       ['BG', 'BG999999999'],
       ['BG', 'BG9999999999'],
       ['CY', 'CY99999999L'],
@@ -110,10 +111,6 @@ class VatRepositoryTest extends TestCase {
       ['FI', 'FI99999999'],
       ['FR', 'FRXX999999999'],
       ['FR', 'FR99999999999'],
-      ['GB', 'GB999999999'],
-      ['GB', 'GB999999999999'],
-      ['GB', 'GBGD999'],
-      ['GB', 'GBHA999'],
       ['HR', 'HR99999999999'],
       ['HU', 'HU99999999'],
       ['IE', 'IE9S99999L'],
@@ -124,13 +121,17 @@ class VatRepositoryTest extends TestCase {
       ['LU', 'LU99999999'],
       ['LV', 'LV99999999999'],
       ['MT', 'MT99999999'],
-      ['NL', 'NL999999999B99'],
+      ['NL', 'NLSSSSSSSSSSSS'],
       ['PL', 'PL9999999999'],
       ['PT', 'PT999999999'],
       ['RO', 'RO999999999'],
       ['SE', 'SE999999999999'],
       ['SI', 'SI99999999'],
       ['SK', 'SK9999999999'],
+      ['XI', 'XI999999999'],
+      ['XI', 'XI999999999999'],
+      ['XI', 'XIGD999'],
+      ['XI', 'XIHA999'],
     ];
   }
 
